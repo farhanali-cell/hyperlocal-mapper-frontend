@@ -5,13 +5,14 @@ import { useAuth } from "../../context/AuthContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "How It Works", path: "/how-it-works" },
   { name: "Live Map", path: "/live-map" },
   { name: "Community", path: "/community-insights" },
 ];
 
-const moreLinks = [
+const exploreLinks = [
+  { name: "Landing", path: "/landing" },
+  { name: "About", path: "/about" },
+  { name: "How It Works", path: "/how-it-works" },
   { name: "Contact", path: "/contact" },
   { name: "Track Complaint", path: "/track-complaint" },
   { name: "Help / FAQ", path: "/help" },
@@ -36,13 +37,13 @@ function getProfileMenuLinks(user) {
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
   const [bellOpen, setBellOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
   const { user, logout } = useAuth();
   const location = useLocation();
-  const moreRef = useRef(null);
+  const exploreRef = useRef(null);
   const bellRef = useRef(null);
   const profileRef = useRef(null);
 
@@ -56,8 +57,8 @@ function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (moreRef.current && !moreRef.current.contains(e.target)) {
-        setMoreOpen(false);
+      if (exploreRef.current && !exploreRef.current.contains(e.target)) {
+        setExploreOpen(false);
       }
       if (bellRef.current && !bellRef.current.contains(e.target)) {
         setBellOpen(false);
@@ -108,18 +109,18 @@ function Navbar() {
               </Link>
             ))}
 
-            <div className="relative shrink-0" ref={moreRef}>
+            <div className="relative shrink-0" ref={exploreRef}>
               <button
-                onClick={() => setMoreOpen(!moreOpen)}
+                onClick={() => setExploreOpen(!exploreOpen)}
                 className={`flex items-center gap-1 text-sm font-medium whitespace-nowrap transition-colors ${
-                  moreLinks.some((l) => l.path === location.pathname)
+                  exploreLinks.some((l) => l.path === location.pathname)
                     ? "text-primary"
                     : "text-text-muted hover:text-text-dark"
                 }`}
               >
-                More
+                Explore
                 <svg
-                  className={`w-3.5 h-3.5 transition-transform ${moreOpen ? "rotate-180" : ""}`}
+                  className={`w-3.5 h-3.5 transition-transform ${exploreOpen ? "rotate-180" : ""}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -134,7 +135,7 @@ function Navbar() {
               </button>
 
               <AnimatePresence>
-                {moreOpen && (
+                {exploreOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -142,11 +143,11 @@ function Navbar() {
                     transition={{ duration: 0.15 }}
                     className="absolute top-full right-0 mt-3 rounded-xl py-2 w-48 shadow-lg shadow-slate-200/50 bg-white/95 backdrop-blur-md border border-white/60"
                   >
-                    {moreLinks.map((link) => (
+                    {exploreLinks.map((link) => (
                       <Link
                         key={link.path}
                         to={link.path}
-                        onClick={() => setMoreOpen(false)}
+                        onClick={() => setExploreOpen(false)}
                         className={`block px-4 py-2 text-sm transition-colors ${
                           location.pathname === link.path
                             ? "text-primary font-medium"
@@ -347,7 +348,7 @@ function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden glass rounded-2xl mt-2 px-6 py-4 flex flex-col gap-4 max-h-[80vh] overflow-y-auto"
             >
-              {[...navLinks, ...moreLinks].map((link) => (
+              {[...navLinks, ...exploreLinks].map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
