@@ -243,7 +243,7 @@ function LiveMapHero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0B1220] pt-20">
       {/* Video layer with crossfade */}
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="wait">
         <motion.video
           key={heroVideos[videoIndex].src}
           autoPlay
