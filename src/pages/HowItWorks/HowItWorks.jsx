@@ -476,7 +476,7 @@ const FAQCTASection = () => (
           </p>
           <Link
             to="/report-issue"
-            className="inline-block font-['Inter'] font-medium bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-colors"
+            className="inline-block font-['Inter'] font-medium bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full transition-colors"
           >
             Report an Issue
           </Link>

@@ -100,7 +100,7 @@ export default function Landing() {
         >
           <Link
             to="/report-issue"
-            className="px-7 py-3.5 rounded-xl text-white font-medium bg-primary"
+            className="px-7 py-3.5 rounded-xl text-white font-medium bg-primary hover:bg-primary-dark"
           >
             Report an Issue
           </Link>
@@ -235,7 +235,7 @@ export default function Landing() {
           </p>
           <Link
             to="/report-issue"
-            className="inline-block px-8 py-3.5 rounded-xl font-medium bg-primary text-white"
+            className="inline-block px-8 py-3.5 rounded-xl font-medium bg-primary hover:bg-primary-dark text-white"
           >
             Get Started
           </Link>

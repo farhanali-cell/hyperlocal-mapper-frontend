@@ -496,7 +496,7 @@ export default function Settings() {
       <section className="px-6 md:px-12 max-w-3xl mx-auto pb-24 text-center">
         <p className="text-sm text-text-muted">
           Need help with your account?{" "}
-          <a href="/contact" className="text-primary font-medium">
+          <a href="/contact" className="text-primary hover:text-secondary font-medium">
             Contact us
           </a>
         </p>

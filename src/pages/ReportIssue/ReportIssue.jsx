@@ -792,7 +792,7 @@ export default function ReportIssue() {
             <p className="text-text-muted mb-4">Pehle se koi report kiya hai?</p>
             <button
               onClick={() => navigate("/track-complaint")}
-              className="px-6 py-3 rounded-xl font-medium border border-primary text-primary"
+              className="px-6 py-3 rounded-xl font-medium border border-primary hover:bg-primary-dark text-white"
             >
               Track Complaint
             </button>

@@ -89,7 +89,7 @@ export default function TrackComplaint() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="e.g. 1042"
-            className="flex-1 rounded-xl border border-white/60 bg-white/70 px-4 py-3 text-text-dark outline-none focus:ring-2 focus:ring-primary"
+            className="flex-1 rounded-xl input-field px-4 py-3 text-text-dark outline-none focus:ring-2 focus:ring-primary"
           />
           <button
             type="submit"
@@ -264,7 +264,7 @@ export default function TrackComplaint() {
         </h2>
         <a
           href="/report"
-          className="inline-block px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary transition-colors"
+          className="inline-block px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary-dark transition-colors"
         >
           Report an Issue
         </a>

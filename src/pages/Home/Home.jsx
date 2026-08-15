@@ -696,7 +696,7 @@ export default function Home() {
           </p>
           <Link
             to="/report-issue"
-            className="mt-8 inline-block rounded-full bg-primary px-10 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition hover:bg-primary/90"
+            className="mt-8 inline-block rounded-full bg-primary px-10 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition hover:bg-primary-dark"
           >
             Report an Issue
           </Link>

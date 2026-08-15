@@ -219,7 +219,7 @@ export default function About() {
             </p>
             <Link
               to="/report-issue"
-              className="inline-block px-6 py-3 rounded-xl text-white font-medium bg-primary"
+              className="inline-block px-6 py-3 rounded-xl text-white font-medium bg-primary hover:bg-primary-dark"
             >
               Report an Issue
             </Link>

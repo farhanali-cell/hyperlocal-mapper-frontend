@@ -183,7 +183,7 @@ export default function Profile() {
       <section className="px-6 md:px-12 max-w-5xl mx-auto pb-24 text-center">
         <p className="text-sm text-text-muted">
           Something look wrong?{" "}
-          <a href="/contact" className="text-primary font-medium">
+          <a href="/contact" className="text-primary hover:text-secondary font-medium">
             Contact us
           </a>
         </p>
