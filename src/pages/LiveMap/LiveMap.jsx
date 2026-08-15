@@ -27,12 +27,12 @@ const CITIES = [
 ];
 
 const CATEGORY_COLORS = {
-  electricity: "#FF6B4A",
-  water: "#2F6FED",
-  streetlight: "#14B8A6",
-  waste: "#5B6B85",
-  roads: "#0F1729",
-  other: "#2F6FED",
+  electricity: "#e2543f",
+  water: "#364fc7",
+  streetlight: "#0d9488",
+  waste: "#5c6478",
+  roads: "#0b1220",
+  other: "#364fc7",
 };
 
 const STATUS_OPTIONS = [
@@ -159,7 +159,7 @@ export default function LiveMap() {
   }, [filteredClusters]);
 
   return (
-    <div className="bg-[#F5F8FC] text-[#0F1729] font-['Inter']">
+    <div className="bg-bg text-text-dark font-['Inter']">
       {/* 1. HERO */}
       <section className="px-6 pt-28 pb-12 text-center">
         <motion.h1
@@ -174,7 +174,7 @@ export default function LiveMap() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-3 text-[#5B6B85] max-w-xl mx-auto"
+          className="mt-3 text-text-muted max-w-xl mx-auto"
         >
           AI-clustered civic issues, real-time — apne shehar ka scene dekhein
         </motion.p>
@@ -186,12 +186,9 @@ export default function LiveMap() {
               onClick={() => setActiveCity(city)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCity.id === city.id
-                  ? "text-white"
-                  : "text-[#5B6B85] glass"
+                  ? "bg-primary text-white"
+                  : "text-text-muted glass"
               }`}
-              style={
-                activeCity.id === city.id ? { backgroundColor: "#2F6FED" } : {}
-              }
             >
               {city.label}
             </button>
@@ -205,14 +202,14 @@ export default function LiveMap() {
           {/* Filters sidebar */}
           <div className="glass rounded-2xl p-4 h-fit space-y-5">
             <div>
-              <p className="text-xs font-semibold text-[#5B6B85] uppercase mb-2">
+              <p className="text-xs font-semibold text-text-muted uppercase mb-2">
                 Category
               </p>
               <div className="space-y-1">
                 <button
                   onClick={() => setCategoryFilter("all")}
                   className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${
-                    categoryFilter === "all" ? "bg-[#2F6FED1A] font-medium" : ""
+                    categoryFilter === "all" ? "bg-text-dark font-medium" : ""
                   }`}
                 >
                   All
@@ -222,7 +219,7 @@ export default function LiveMap() {
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
                     className={`w-full text-left px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 capitalize ${
-                      categoryFilter === cat ? "bg-[#2F6FED1A] font-medium" : ""
+                      categoryFilter === cat ? "bg-text-dark font-medium" : ""
                     }`}
                   >
                     <span
@@ -236,13 +233,13 @@ export default function LiveMap() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-[#5B6B85] uppercase mb-2">
+              <p className="text-xs font-semibold text-text-muted uppercase mb-2">
                 Status
               </p>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-white/70 border border-[#5B6B85]/15 text-sm outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-white/70 border border-text-dark/15 text-sm outline-none"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -254,10 +251,10 @@ export default function LiveMap() {
           </div>
 
           {/* Map */}
-          <div className="relative z-0 isolate rounded-2xl overflow-hidden h-[520px]">
+          <div className="relative z-0 isolate rounded-2xl overflow-hidden h-130">
             {loading && (
-              <div className="absolute inset-0 z-[500] flex items-center justify-center bg-white/60 backdrop-blur-sm">
-                <span className="text-sm text-[#5B6B85]">
+              <div className="absolute inset-0 z-500 flex items-center justify-center bg-white/60 backdrop-blur-sm">
+                <span className="text-sm text-text-muted">
                   Loading map data...
                 </span>
               </div>
@@ -280,8 +277,8 @@ export default function LiveMap() {
                   center={[c.lat, c.lng]}
                   radius={severityRadius(c.count)}
                   pathOptions={{
-                    color: CATEGORY_COLORS[c.category] || "#2F6FED",
-                    fillColor: CATEGORY_COLORS[c.category] || "#2F6FED",
+                    color: CATEGORY_COLORS[c.category] || "#364fc7",
+                    fillColor: CATEGORY_COLORS[c.category] || "#364fc7",
                     fillOpacity: 0.55,
                     weight: 2,
                   }}
@@ -291,7 +288,7 @@ export default function LiveMap() {
                 >
                   <Popup>
                     <p className="font-medium">{c.title}</p>
-                    <p className="text-xs text-[#5B6B85]">{c.count} reports</p>
+                    <p className="text-xs text-text-muted">{c.count} reports</p>
                   </Popup>
                 </CircleMarker>
               ))}
@@ -307,7 +304,7 @@ export default function LiveMap() {
             {Object.entries(CATEGORY_COLORS).map(([cat, color]) => (
               <div
                 key={cat}
-                className="flex items-center gap-1.5 text-xs text-[#5B6B85] capitalize"
+                className="flex items-center gap-1.5 text-xs text-text-muted capitalize"
               >
                 <span
                   className="w-2.5 h-2.5 rounded-full"
@@ -320,23 +317,19 @@ export default function LiveMap() {
           <div className="flex gap-6 font-mono text-sm">
             <div>
               <span className="font-bold">{stats.clusters}</span>{" "}
-              <span className="text-[#5B6B85]">clusters</span>
+              <span className="text-text-muted">clusters</span>
             </div>
             <div>
               <span className="font-bold">{stats.total}</span>{" "}
-              <span className="text-[#5B6B85]">reports</span>
+              <span className="text-text-muted">reports</span>
             </div>
             <div>
-              <span className="font-bold" style={{ color: "#FF6B4A" }}>
-                {stats.open}
-              </span>{" "}
-              <span className="text-[#5B6B85]">open</span>
+              <span className="font-bold text-alert">{stats.open}</span>{" "}
+              <span className="text-text-muted">open</span>
             </div>
             <div>
-              <span className="font-bold" style={{ color: "#14B8A6" }}>
-                {stats.resolved}
-              </span>{" "}
-              <span className="text-[#5B6B85]">resolved</span>
+              <span className="font-bold text-secondary">{stats.resolved}</span>{" "}
+              <span className="text-text-muted">resolved</span>
             </div>
           </div>
         </div>
@@ -363,14 +356,14 @@ export default function LiveMap() {
               <h3 className="font-['Sora'] font-semibold text-lg mt-2">
                 {selectedCluster.title}
               </h3>
-              <p className="text-sm text-[#5B6B85] mt-1">
+              <p className="text-sm text-text-muted mt-1">
                 {selectedCluster.count} reports clustered · status:{" "}
                 {selectedCluster.status.replace("_", " ")}
               </p>
             </div>
             <button
               onClick={() => setSelectedCluster(null)}
-              className="text-[#5B6B85] text-sm"
+              className="text-text-muted text-sm"
             >
               ✕ close
             </button>
@@ -393,7 +386,7 @@ export default function LiveMap() {
               >
                 <div>
                   <p className="font-medium">{c.title}</p>
-                  <p className="text-xs text-[#5B6B85] mt-1 capitalize">
+                  <p className="text-xs text-text-muted mt-1 capitalize">
                     {c.category} · {c.count} reports
                   </p>
                 </div>
@@ -404,7 +397,7 @@ export default function LiveMap() {
               </button>
             ))}
             {!filteredClusters.length && (
-              <p className="text-sm text-[#5B6B85]">
+              <p className="text-sm text-text-muted">
                 Is filter ke sath koi cluster nahi mila.
               </p>
             )}
@@ -418,13 +411,12 @@ export default function LiveMap() {
           <h2 className="font-['Sora'] font-semibold text-2xl mb-2">
             Apna Masla Map Par Nahi Dikh Raha?
           </h2>
-          <p className="text-[#5B6B85] mb-6">
+          <p className="text-text-muted mb-6">
             Naya issue report karein, AI usay khud cluster kar dega.
           </p>
           <Link
             to="/report-issue"
-            className="inline-block px-6 py-3 rounded-xl text-white font-medium"
-            style={{ backgroundColor: "#2F6FED" }}
+            className="inline-block px-6 py-3 rounded-xl text-white font-medium bg-primary"
           >
             Report an Issue
           </Link>

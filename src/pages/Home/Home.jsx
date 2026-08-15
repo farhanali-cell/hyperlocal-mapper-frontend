@@ -241,7 +241,7 @@ function LiveMapHero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0B1220] pt-20">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-text-dark pt-20">
       {/* Video layer with crossfade */}
       <AnimatePresence mode="wait">
         <motion.video
@@ -261,7 +261,7 @@ function LiveMapHero() {
       </AnimatePresence>
 
       {/* Light gradient overlay — just enough for text readability, video stays clear */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/55" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/45 via-black/15 to-black/55" />
 
       {/* Foreground content */}
       <motion.div
@@ -521,7 +521,7 @@ export default function Home() {
       </motion.section>
 
       {/* ===== SECTION 8: AI Clustering Explainer ===== */}
-      <section className="bg-gradient-to-br from-primary to-secondary py-24">
+      <section className="bg-linear-to-br from-primary to-secondary py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -592,7 +592,7 @@ export default function Home() {
                       delay: i * 0.1,
                       ease: "easeOut",
                     }}
-                    className="w-full rounded-t-lg bg-gradient-to-t from-primary to-secondary"
+                    className="w-full rounded-t-lg bg-linear-to-t from-primary to-secondary"
                   />
                   <span className="text-xs text-text-muted">{bar.label}</span>
                 </div>
@@ -634,9 +634,9 @@ export default function Home() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="glass flex items-center gap-4 rounded-xl border border-white/40 px-5 py-4"
               >
-                <span className="h-2 w-2 flex-shrink-0 rounded-full bg-secondary" />
+                <span className="h-2 w-2 shrink-0 rounded-full bg-secondary" />
                 <p className="flex-1 text-sm text-text-dark">{item.text}</p>
-                <span className="flex-shrink-0 text-xs text-text-muted">
+                <span className="shrink-0 text-xs text-text-muted">
                   {item.time}
                 </span>
               </motion.div>

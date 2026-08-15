@@ -1,15 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #f5f8fc;
-  --color-primary: #2f6fed;
-  --color-primary-dark: #1e4fc7;
-  --color-secondary: #14b8a6;
-  --color-alert: #ff6b4a;
-  --color-text-dark: #0f1729;
-  --color-text-muted: #5b6b85;
-  --color-glass: rgba(255, 255, 255, 0.55);
-  --color-glass-border: rgba(255, 255, 255, 0.8);
+  /* Base */
+  --color-bg: #f7f8fa;
+  --color-text-dark: #0b1220;
+  --color-text-muted: #5c6478;
+
+  /* Primary — deep indigo-navy (replaces flat blue) */
+  --color-primary: #364fc7;
+  --color-primary-dark: #2a3a9e;
+  --color-primary-light: #eef1fd;
+
+  /* Secondary — refined teal, slightly deeper & desaturated */
+  --color-secondary: #0d9488;
+  --color-secondary-dark: #0a7a70;
+
+  /* Accent — warm amber/gold, used sparingly for premium highlights */
+  --color-accent: #d97706;
+  --color-accent-light: #fef3e2;
+
+  /* Alert — softened coral, less neon than before */
+  --color-alert: #e2543f;
+
+  /* Glass */
+  --color-glass: rgba(255, 255, 255, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.9);
+  --color-glass-dark: rgba(11, 18, 32, 0.55);
+  --color-glass-dark-border: rgba(255, 255, 255, 0.08);
 
   --font-display: "Sora", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -29,4 +46,12 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-glass-border);
+  box-shadow: 0 4px 24px -8px rgba(11, 18, 32, 0.08);
+}
+
+.glass-dark {
+  background: var(--color-glass-dark);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-dark-border);
 }

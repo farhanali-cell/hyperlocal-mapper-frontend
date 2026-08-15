@@ -73,12 +73,12 @@ export default function AdminDashboard() {
   // 1. Role guard
   if (!user || user.role !== "admin") {
     return (
-      <div className="min-h-screen bg-[#F5F8FC] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-bg flex items-center justify-center px-6">
         <div className="glass rounded-2xl p-8 text-center max-w-md">
-          <h1 className="font-[Sora] text-xl font-semibold text-[#0F1729] mb-2">
+          <h1 className="font-[Sora] text-xl font-semibold text-text-dark mb-2">
             Admins only
           </h1>
-          <p className="text-[#5B6B85] text-sm">
+          <p className="text-text-muted text-sm">
             This dashboard is restricted to administrator accounts.
           </p>
         </div>
@@ -87,18 +87,18 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F8FC]">
+    <div className="min-h-screen bg-bg">
       {/* 2. Header */}
       <section className="pt-28 pb-8 px-6 md:px-12 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-mono text-[#5B6B85] mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#2F6FED] animate-pulse" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-mono text-text-muted mb-4">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Admin Dashboard
           </span>
-          <h1 className="font-[Sora] text-3xl md:text-4xl font-semibold text-[#0F1729]">
+          <h1 className="font-[Sora] text-3xl md:text-4xl font-semibold text-text-dark">
             Welcome back, {user.username}
           </h1>
         </motion.div>
@@ -117,10 +117,10 @@ export default function AdminDashboard() {
           },
         ].map((item) => (
           <div key={item.label} className="glass rounded-2xl p-4 text-center">
-            <p className="font-[JetBrains_Mono] text-2xl font-semibold text-[#2F6FED]">
+            <p className="font-[JetBrains_Mono] text-2xl font-semibold text-primary">
               {loading ? "…" : (item.value ?? "—")}
             </p>
-            <p className="text-xs text-[#5B6B85] mt-1">{item.label}</p>
+            <p className="text-xs text-text-muted mt-1">{item.label}</p>
           </div>
         ))}
       </section>
@@ -128,7 +128,7 @@ export default function AdminDashboard() {
       {/* 4. Complaints table with status filter + inline update */}
       <section className="px-6 md:px-12 max-w-6xl mx-auto mb-12">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-          <h2 className="font-[Sora] text-xl font-semibold text-[#0F1729]">
+          <h2 className="font-[Sora] text-xl font-semibold text-text-dark">
             Complaints
           </h2>
           <div className="flex gap-2">
@@ -138,8 +138,8 @@ export default function AdminDashboard() {
                 onClick={() => setStatusFilter(s)}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium capitalize transition-colors ${
                   statusFilter === s
-                    ? "bg-[#2F6FED] text-white"
-                    : "glass text-[#5B6B85]"
+                    ? "bg-primary text-white"
+                    : "glass text-text-muted"
                 }`}
               >
                 {s.replace("_", " ")}
@@ -150,11 +150,11 @@ export default function AdminDashboard() {
 
         <div className="glass rounded-2xl overflow-hidden">
           {loading ? (
-            <p className="p-6 text-center text-[#5B6B85]">
+            <p className="p-6 text-center text-text-muted">
               Loading complaints…
             </p>
           ) : filteredComplaints.length === 0 ? (
-            <p className="p-6 text-center text-[#5B6B85]">
+            <p className="p-6 text-center text-text-muted">
               No complaints here.
             </p>
           ) : (
@@ -165,11 +165,11 @@ export default function AdminDashboard() {
                   className="p-4 flex flex-wrap items-center justify-between gap-3"
                 >
                   <div>
-                    <p className="text-sm font-medium text-[#0F1729]">
+                    <p className="text-sm font-medium text-text-dark">
                       #{c.id} · {CATEGORY_LABELS[c.category] || c.category}
                       {c.city ? ` — ${c.city}` : ""}
                     </p>
-                    <p className="text-xs text-[#5B6B85] max-w-md truncate">
+                    <p className="text-xs text-text-muted max-w-md truncate">
                       {c.description}
                     </p>
                   </div>
@@ -177,7 +177,7 @@ export default function AdminDashboard() {
                     value={c.status}
                     disabled={updatingId === c.id}
                     onChange={(e) => updateStatus(c.id, e.target.value)}
-                    className="rounded-lg border border-white/60 bg-white/70 px-3 py-1.5 text-xs text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                    className="rounded-lg border border-white/60 bg-white/70 px-3 py-1.5 text-xs text-text-dark outline-none focus:ring-2 focus:ring-primary"
                   >
                     <option value="pending">Pending</option>
                     <option value="in_progress">In Progress</option>
@@ -192,11 +192,11 @@ export default function AdminDashboard() {
 
       {/* 5. Clusters overview */}
       <section className="px-6 md:px-12 max-w-6xl mx-auto mb-12">
-        <h2 className="font-[Sora] text-xl font-semibold text-[#0F1729] mb-4">
+        <h2 className="font-[Sora] text-xl font-semibold text-text-dark mb-4">
           Active clusters
         </h2>
         {clusters.length === 0 ? (
-          <div className="glass rounded-2xl p-6 text-center text-[#5B6B85]">
+          <div className="glass rounded-2xl p-6 text-center text-text-muted">
             {loading ? "Loading clusters…" : "No clusters yet."}
           </div>
         ) : (
@@ -209,16 +209,16 @@ export default function AdminDashboard() {
                 <span
                   className={`w-3 h-3 rounded-full mt-1 shrink-0 ${
                     cluster.priority_level === "high"
-                      ? "bg-[#FF6B4A]"
-                      : "bg-[#14B8A6]"
+                      ? "bg-alert"
+                      : "bg-secondary"
                   }`}
                 />
                 <div>
-                  <p className="font-medium text-[#0F1729]">
+                  <p className="font-medium text-text-dark">
                     {CATEGORY_LABELS[cluster.category] || cluster.category} —{" "}
                     {cluster.city}
                   </p>
-                  <p className="text-sm text-[#5B6B85] capitalize">
+                  <p className="text-sm text-text-muted capitalize">
                     priority: {cluster.priority_level || "medium"}
                   </p>
                 </div>
@@ -230,7 +230,7 @@ export default function AdminDashboard() {
 
       {/* 6. By city breakdown */}
       <section className="px-6 md:px-12 max-w-6xl mx-auto mb-12">
-        <h2 className="font-[Sora] text-xl font-semibold text-[#0F1729] mb-4">
+        <h2 className="font-[Sora] text-xl font-semibold text-text-dark mb-4">
           Complaints by city
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -239,10 +239,10 @@ export default function AdminDashboard() {
               key={entry.city || "unknown"}
               className="glass rounded-2xl p-4 text-center"
             >
-              <p className="font-[JetBrains_Mono] text-xl font-semibold text-[#2F6FED]">
+              <p className="font-[JetBrains_Mono] text-xl font-semibold text-primary">
                 {entry.count}
               </p>
-              <p className="text-xs text-[#5B6B85] mt-1">
+              <p className="text-xs text-text-muted mt-1">
                 {entry.city || "Unspecified"}
               </p>
             </div>
@@ -252,12 +252,12 @@ export default function AdminDashboard() {
 
       {/* 7. Contact messages inbox */}
       <section className="px-6 md:px-12 max-w-6xl mx-auto mb-12">
-        <h2 className="font-[Sora] text-xl font-semibold text-[#0F1729] mb-4">
+        <h2 className="font-[Sora] text-xl font-semibold text-text-dark mb-4">
           Contact messages
         </h2>
         <div className="glass rounded-2xl overflow-hidden">
           {messages.length === 0 ? (
-            <p className="p-6 text-center text-[#5B6B85]">
+            <p className="p-6 text-center text-text-muted">
               {loading ? "Loading messages…" : "No messages yet."}
             </p>
           ) : (
@@ -265,14 +265,14 @@ export default function AdminDashboard() {
               {messages.slice(0, 6).map((m) => (
                 <div key={m.id} className="p-4">
                   <div className="flex items-center justify-between gap-3 mb-1">
-                    <p className="text-sm font-medium text-[#0F1729]">
+                    <p className="text-sm font-medium text-text-dark">
                       {m.name} · {m.category}
                     </p>
-                    <span className="text-xs text-[#5B6B85] capitalize">
+                    <span className="text-xs text-text-muted capitalize">
                       {m.status}
                     </span>
                   </div>
-                  <p className="text-xs text-[#5B6B85] truncate">{m.message}</p>
+                  <p className="text-xs text-text-muted truncate">{m.message}</p>
                 </div>
               ))}
             </div>

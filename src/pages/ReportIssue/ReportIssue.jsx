@@ -11,19 +11,19 @@ const CATEGORIES = [
   {
     id: "electricity",
     label: "Electricity",
-    color: "#FF6B4A",
+    color: "#e2543f",
     icon: <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />,
   },
   {
     id: "water",
     label: "Water & Sewerage",
-    color: "#2F6FED",
+    color: "#364fc7",
     icon: <path d="M12 2s7 8.5 7 13a7 7 0 1 1-14 0c0-4.5 7-13 7-13z" />,
   },
   {
     id: "streetlight",
     label: "Streetlight",
-    color: "#14B8A6",
+    color: "#0d9488",
     icon: (
       <>
         <circle cx="12" cy="9" r="5" />
@@ -34,7 +34,7 @@ const CATEGORIES = [
   {
     id: "waste",
     label: "Waste / Garbage",
-    color: "#5B6B85",
+    color: "#5c6478",
     icon: (
       <>
         <path d="M3 6h18" />
@@ -46,7 +46,7 @@ const CATEGORIES = [
   {
     id: "roads",
     label: "Roads",
-    color: "#0F1729",
+    color: "#0b1220",
     icon: (
       <>
         <path d="M4 20 10 4h4l6 16" />
@@ -57,7 +57,7 @@ const CATEGORIES = [
   {
     id: "other",
     label: "Other",
-    color: "#2F6FED",
+    color: "#364fc7",
     icon: <circle cx="12" cy="12" r="9" />,
   },
 ];
@@ -121,11 +121,11 @@ function PulsePin({ size = 14 }) {
     >
       <span
         className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping"
-        style={{ backgroundColor: "#2F6FED" }}
+        style={{ backgroundColor: "#364fc7" }}
       />
       <span
         className="relative inline-flex rounded-full h-full w-full"
-        style={{ backgroundColor: "#2F6FED" }}
+        style={{ backgroundColor: "#364fc7" }}
       />
     </span>
   );
@@ -337,7 +337,7 @@ export default function ReportIssue() {
   };
 
   return (
-    <div className="bg-[#F5F8FC] text-[#0F1729] font-['Inter']">
+    <div className="bg-bg text-text-dark font-['Inter']">
       {/* 1. HERO */}
       <section className="relative overflow-hidden px-6 pt-28 pb-20 md:pt-36 md:pb-28">
         <div className="max-w-4xl mx-auto text-center">
@@ -345,7 +345,7 @@ export default function ReportIssue() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-[#5B6B85] mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-text-muted mb-6"
           >
             <PulsePin size={10} />
             Aap ki report, shehar ki behtari
@@ -358,14 +358,14 @@ export default function ReportIssue() {
             className="font-['Sora'] font-bold text-4xl md:text-6xl leading-tight"
           >
             Apni Awaaz Uthayen,{" "}
-            <span style={{ color: "#2F6FED" }}>Ek Report Se</span>
+            <span className="text-primary">Ek Report Se</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 text-lg text-[#5B6B85] max-w-2xl mx-auto"
+            className="mt-5 text-lg text-text-muted max-w-2xl mx-auto"
           >
             Bijli, paani, sadak ya kachray ka masla ho — location aur tasveer ke
             sath report karein, hum baaqi handle karte hain.
@@ -375,18 +375,18 @@ export default function ReportIssue() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10 flex justify-center gap-8 text-sm text-[#5B6B85] font-mono"
+            className="mt-10 flex justify-center gap-8 text-sm text-text-muted font-mono"
           >
             <div>
-              <p className="text-2xl font-bold text-[#0F1729]">4</p>
+              <p className="text-2xl font-bold text-text-dark">4</p>
               <p>Cities Covered</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-[#0F1729]">~2 min</p>
+              <p className="text-2xl font-bold text-text-dark">~2 min</p>
               <p>Avg. Report Time</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-[#0F1729]">AI</p>
+              <p className="text-2xl font-bold text-text-dark">AI</p>
               <p>Powered Priority</p>
             </div>
           </motion.div>
@@ -399,7 +399,7 @@ export default function ReportIssue() {
           <h2 className="font-['Sora'] font-semibold text-2xl text-center mb-2">
             Category Select Karein
           </h2>
-          <p className="text-center text-[#5B6B85] mb-10">
+          <p className="text-center text-text-muted mb-10">
             Card par click karein — form neeche auto-fill ho jayega
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -414,7 +414,7 @@ export default function ReportIssue() {
                 onClick={() => scrollToForm(cat.id)}
                 className={`glass rounded-2xl p-5 flex flex-col items-start gap-3 text-left transition-all hover:-translate-y-1 hover:shadow-lg ${
                   form.category === cat.id
-                    ? "ring-2 ring-offset-2 ring-[#2F6FED]"
+                    ? "ring-2 ring-offset-2 ring-primary"
                     : ""
                 }`}
               >
@@ -437,7 +437,7 @@ export default function ReportIssue() {
           <h2 className="font-['Sora'] font-semibold text-2xl mb-1">
             Complaint Details
           </h2>
-          <p className="text-[#5B6B85] mb-8 text-sm">
+          <p className="text-text-muted mb-8 text-sm">
             {user
               ? `Submitting as ${user.username}`
               : "Login karke submit karein taake status track kar sakein"}
@@ -454,30 +454,29 @@ export default function ReportIssue() {
               >
                 <div
                   className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
-                  style={{ backgroundColor: "#14B8A61A" }}
+                  style={{ backgroundColor: "#0d94881A" }}
                 >
                   <PulsePin size={18} />
                 </div>
                 <h3 className="font-['Sora'] font-semibold text-xl mb-2">
                   Report Submit Ho Gaya!
                 </h3>
-                <p className="text-[#5B6B85] mb-6">
+                <p className="text-text-muted mb-6">
                   Reference ID:{" "}
-                  <span className="font-mono font-semibold text-[#0F1729]">
+                  <span className="font-mono font-semibold text-text-dark">
                     #{successId}
                   </span>
                 </p>
                 <div className="flex justify-center gap-3">
                   <Link
                     to="/track-complaint"
-                    className="px-5 py-2.5 rounded-xl text-white text-sm font-medium"
-                    style={{ backgroundColor: "#2F6FED" }}
+                    className="px-5 py-2.5 rounded-xl text-white text-sm font-medium bg-primary"
                   >
                     Track Complaint
                   </Link>
                   <button
                     onClick={() => setSuccessId(null)}
-                    className="px-5 py-2.5 rounded-xl text-sm font-medium border border-[#5B6B85]/20"
+                    className="px-5 py-2.5 rounded-xl text-sm font-medium border border-text-dark/20"
                   >
                     Another Report
                   </button>
@@ -500,10 +499,10 @@ export default function ReportIssue() {
                     value={form.title}
                     onChange={handleChange}
                     placeholder="e.g. Streetlight band hai past 1 week se"
-                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-[#5B6B85]/15 outline-none focus:border-[#2F6FED] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-text-dark/15 outline-none focus:border-primary transition-colors"
                   />
                   {errors.title && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.title}
                     </p>
                   )}
@@ -518,7 +517,7 @@ export default function ReportIssue() {
                     name="category"
                     value={form.category}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-[#5B6B85]/15 outline-none focus:border-[#2F6FED] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-text-dark/15 outline-none focus:border-primary transition-colors"
                   >
                     <option value="">Select category</option>
                     {CATEGORIES.map((c) => (
@@ -528,7 +527,7 @@ export default function ReportIssue() {
                     ))}
                   </select>
                   {errors.category && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.category}
                     </p>
                   )}
@@ -543,7 +542,7 @@ export default function ReportIssue() {
                     name="city"
                     value={form.city}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-[#5B6B85]/15 outline-none focus:border-[#2F6FED] transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-text-dark/15 outline-none focus:border-primary transition-colors"
                   >
                     <option value="">Select city</option>
                     <option value="Karachi">Karachi</option>
@@ -552,7 +551,7 @@ export default function ReportIssue() {
                     <option value="Faisalabad">Faisalabad</option>
                   </select>
                   {errors.city && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.city}
                     </p>
                   )}
@@ -569,10 +568,10 @@ export default function ReportIssue() {
                     onChange={handleChange}
                     rows={4}
                     placeholder="Masla kya hai, kab se hai, kitna severe hai..."
-                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-[#5B6B85]/15 outline-none focus:border-[#2F6FED] transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/70 border border-text-dark/15 outline-none focus:border-primary transition-colors resize-none"
                   />
                   {errors.description && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.description}
                     </p>
                   )}
@@ -590,25 +589,25 @@ export default function ReportIssue() {
                       value={form.address}
                       onChange={handleChange}
                       placeholder="Address ya landmark"
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/70 border border-[#5B6B85]/15 outline-none focus:border-[#2F6FED] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/70 border border-text-dark/15 outline-none focus:border-primary transition-colors"
                     />
                     <button
                       type="button"
                       onClick={useMyLocation}
                       disabled={locating}
                       className="px-4 rounded-xl text-sm font-medium whitespace-nowrap flex items-center gap-2"
-                      style={{ backgroundColor: "#2F6FED1A", color: "#2F6FED" }}
+                      style={{ backgroundColor: "#364fc71A", color: "#364fc7" }}
                     >
                       {locating ? "Locating..." : "📍 Use My Location"}
                     </button>
                   </div>
                   {form.latitude && (
-                    <p className="text-xs mt-1 text-[#5B6B85] font-mono">
+                    <p className="text-xs mt-1 text-text-muted font-mono">
                       {form.latitude.toFixed(5)}, {form.longitude.toFixed(5)}
                     </p>
                   )}
                   {errors.address && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.address}
                     </p>
                   )}
@@ -638,7 +637,7 @@ export default function ReportIssue() {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="w-full h-32 rounded-xl border-2 border-dashed border-[#5B6B85]/25 flex flex-col items-center justify-center gap-1 text-[#5B6B85] hover:border-[#2F6FED] transition-colors"
+                      className="w-full h-32 rounded-xl border-2 border-dashed border-text-dark/25 flex flex-col items-center justify-center gap-1 text-text-muted hover:border-primary transition-colors"
                     >
                       <span className="text-2xl">📷</span>
                       <span className="text-sm">Tap to upload image</span>
@@ -655,7 +654,7 @@ export default function ReportIssue() {
                     Max size: 5MB (JPG, PNG)
                   </p>
                   {errors.image && (
-                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                    <p className="text-xs mt-1 text-alert">
                       {errors.image}
                     </p>
                   )}
@@ -663,8 +662,7 @@ export default function ReportIssue() {
 
                 {errors.submit && (
                   <p
-                    className="text-sm text-center"
-                    style={{ color: "#FF6B4A" }}
+                    className="text-sm text-center text-alert"
                   >
                     {errors.submit}
                   </p>
@@ -673,8 +671,7 @@ export default function ReportIssue() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3.5 rounded-xl text-white font-medium disabled:opacity-60"
-                  style={{ backgroundColor: "#2F6FED" }}
+                  className="w-full py-3.5 rounded-xl text-white font-medium disabled:opacity-60 bg-primary"
                 >
                   {submitting ? "Submitting..." : "Submit Report"}
                 </button>
@@ -689,30 +686,28 @@ export default function ReportIssue() {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
           <div className="glass rounded-2xl p-6">
             <h3
-              className="font-['Sora'] font-semibold text-lg mb-4"
-              style={{ color: "#14B8A6" }}
+              className="font-['Sora'] font-semibold text-lg mb-4 text-secondary"
             >
               ✓ Karein
             </h3>
-            <ul className="space-y-3 text-sm text-[#5B6B85]">
+            <ul className="space-y-3 text-sm text-text-muted">
               {TIPS_DO.map((t, i) => (
                 <li key={i} className="flex gap-2">
-                  <span style={{ color: "#14B8A6" }}>•</span> {t}
+                  <span className="text-secondary">•</span> {t}
                 </li>
               ))}
             </ul>
           </div>
           <div className="glass rounded-2xl p-6">
             <h3
-              className="font-['Sora'] font-semibold text-lg mb-4"
-              style={{ color: "#FF6B4A" }}
+              className="font-['Sora'] font-semibold text-lg mb-4 text-alert"
             >
               ✕ Na Karein
             </h3>
-            <ul className="space-y-3 text-sm text-[#5B6B85]">
+            <ul className="space-y-3 text-sm text-text-muted">
               {TIPS_DONT.map((t, i) => (
                 <li key={i} className="flex gap-2">
-                  <span style={{ color: "#FF6B4A" }}>•</span> {t}
+                  <span className="text-alert">•</span> {t}
                 </li>
               ))}
             </ul>
@@ -734,22 +729,20 @@ export default function ReportIssue() {
             ].map(([title, desc], i) => (
               <div key={i} className="flex items-start gap-3">
                 <span
-                  className="font-mono text-sm font-bold"
-                  style={{ color: "#2F6FED" }}
+                  className="font-mono text-sm font-bold text-primary"
                 >
                   0{i + 1}
                 </span>
                 <div>
                   <p className="font-medium">{title}</p>
-                  <p className="text-sm text-[#5B6B85]">{desc}</p>
+                  <p className="text-sm text-text-muted">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
           <Link
             to="/how-it-works"
-            className="inline-block mt-8 text-sm font-medium"
-            style={{ color: "#2F6FED" }}
+            className="inline-block mt-8 text-sm font-medium text-primary"
           >
             Poora process dekhein →
           </Link>
@@ -787,7 +780,7 @@ export default function ReportIssue() {
                       exit={{ height: 0, opacity: 0 }}
                       className="px-5 overflow-hidden"
                     >
-                      <p className="pb-4 text-sm text-[#5B6B85]">{f.a}</p>
+                      <p className="pb-4 text-sm text-text-muted">{f.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -796,11 +789,10 @@ export default function ReportIssue() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-[#5B6B85] mb-4">Pehle se koi report kiya hai?</p>
+            <p className="text-text-muted mb-4">Pehle se koi report kiya hai?</p>
             <button
               onClick={() => navigate("/track-complaint")}
-              className="px-6 py-3 rounded-xl font-medium border"
-              style={{ borderColor: "#2F6FED", color: "#2F6FED" }}
+              className="px-6 py-3 rounded-xl font-medium border border-primary text-primary"
             >
               Track Complaint
             </button>

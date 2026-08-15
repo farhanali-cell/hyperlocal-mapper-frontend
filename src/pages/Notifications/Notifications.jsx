@@ -14,10 +14,10 @@ const FILTERS = [
 ];
 
 const TYPE_META = {
-  complaint_update: { color: "#2F6FED", icon: "📍" },
-  cluster_alert: { color: "#FF6B4A", icon: "⚠️" },
-  system: { color: "#5B6B85", icon: "🔔" },
-  resolved: { color: "#14B8A6", icon: "✅" },
+  complaint_update: { color: "#364fc7", icon: "📍" },
+  cluster_alert: { color: "#e2543f", icon: "⚠️" },
+  system: { color: "#5c6478", icon: "🔔" },
+  resolved: { color: "#0d9488", icon: "✅" },
 };
 
 // Fallback so page isn't blank before backend endpoint is wired
@@ -143,14 +143,11 @@ export default function Notifications() {
           <div className="flex items-center gap-2">
             <p className="font-medium">{n.title}</p>
             {!n.is_read && (
-              <span
-                className="w-2 h-2 rounded-full shrink-0"
-                style={{ backgroundColor: "#2F6FED" }}
-              />
+              <span className="w-2 h-2 rounded-full shrink-0 bg-primary" />
             )}
           </div>
-          <p className="text-sm text-[#5B6B85] mt-1">{n.message}</p>
-          <p className="text-xs text-[#5B6B85]/70 mt-2 font-mono">
+          <p className="text-sm text-text-muted mt-1">{n.message}</p>
+          <p className="text-xs text-text-muted/70 mt-2 font-mono">
             {new Date(n.created_at).toLocaleString("en-PK", {
               day: "numeric",
               month: "short",
@@ -164,7 +161,7 @@ export default function Notifications() {
   };
 
   return (
-    <div className="bg-[#F5F8FC] text-[#0F1729] font-['Inter']">
+    <div className="bg-bg text-text-dark font-['Inter']">
       {/* 1. HERO */}
       <section className="px-6 pt-28 pb-10">
         <div className="max-w-3xl mx-auto flex items-center justify-between flex-wrap gap-4">
@@ -172,15 +169,12 @@ export default function Notifications() {
             <h1 className="font-['Sora'] font-bold text-3xl md:text-4xl flex items-center gap-3">
               Notifications
               {unreadCount > 0 && (
-                <span
-                  className="text-sm font-mono font-semibold text-white px-2.5 py-1 rounded-full"
-                  style={{ backgroundColor: "#FF6B4A" }}
-                >
+                <span className="text-sm font-mono font-semibold text-white px-2.5 py-1 rounded-full bg-alert">
                   {unreadCount} new
                 </span>
               )}
             </h1>
-            <p className="text-[#5B6B85] mt-2 text-sm">
+            <p className="text-text-muted mt-2 text-sm">
               {user
                 ? `${user.username}, ye rahi aapki updates`
                 : "Login karein notifications dekhne ke liye"}
@@ -189,8 +183,7 @@ export default function Notifications() {
           {unreadCount > 0 && (
             <button
               onClick={markAllRead}
-              className="text-sm font-medium px-4 py-2 rounded-xl glass"
-              style={{ color: "#2F6FED" }}
+              className="text-sm font-medium px-4 py-2 rounded-xl glass text-primary"
             >
               Mark all as read
             </button>
@@ -206,11 +199,10 @@ export default function Notifications() {
               key={f.id}
               onClick={() => setActiveFilter(f.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                activeFilter === f.id ? "text-white" : "text-[#5B6B85] glass"
+                activeFilter === f.id
+                  ? "bg-primary text-white"
+                  : "text-text-muted glass"
               }`}
-              style={
-                activeFilter === f.id ? { backgroundColor: "#2F6FED" } : {}
-              }
             >
               {f.label}
               {f.id === "unread" && unreadCount > 0 && (
@@ -225,7 +217,7 @@ export default function Notifications() {
       <section className="px-6 pb-16">
         <div className="max-w-3xl mx-auto space-y-8">
           {loading ? (
-            <p className="text-sm text-[#5B6B85] text-center py-10">
+            <p className="text-sm text-text-muted text-center py-10">
               Loading notifications...
             </p>
           ) : (
@@ -234,7 +226,7 @@ export default function Notifications() {
                 ([group, items]) =>
                   items.length > 0 && (
                     <div key={group}>
-                      <p className="text-xs font-semibold text-[#5B6B85] uppercase mb-3">
+                      <p className="text-xs font-semibold text-text-muted uppercase mb-3">
                         {group}
                       </p>
                       <div className="space-y-3">
@@ -253,7 +245,7 @@ export default function Notifications() {
               <p className="font-['Sora'] font-semibold text-lg mb-1">
                 Koi notification nahi
               </p>
-              <p className="text-sm text-[#5B6B85]">
+              <p className="text-sm text-text-muted">
                 Jab kuch update hoga, yahan dikhega.
               </p>
             </div>
@@ -268,14 +260,14 @@ export default function Notifications() {
             <p className="font-medium">
               Notification preferences control karni hain?
             </p>
-            <p className="text-sm text-[#5B6B85] mt-1">
+            <p className="text-sm text-text-muted mt-1">
               Email/push alerts customize karein Settings mein.
             </p>
           </div>
           <Link
             to="/settings"
             className="px-4 py-2 rounded-xl text-sm font-medium shrink-0"
-            style={{ backgroundColor: "#2F6FED1A", color: "#2F6FED" }}
+            style={{ backgroundColor: "#364fc71A", color: "#364fc7" }}
           >
             Go to Settings
           </Link>
@@ -284,13 +276,12 @@ export default function Notifications() {
 
       {/* 6. BOTTOM CTA */}
       <section className="px-6 pb-28 text-center">
-        <p className="text-[#5B6B85] mb-4 text-sm">
+        <p className="text-text-muted mb-4 text-sm">
           Koi naya masla dekha shehar mein?
         </p>
         <Link
           to="/report-issue"
-          className="inline-block px-6 py-3 rounded-xl text-white font-medium"
-          style={{ backgroundColor: "#2F6FED" }}
+          className="inline-block px-6 py-3 rounded-xl text-white font-medium bg-primary"
         >
           Report an Issue
         </Link>

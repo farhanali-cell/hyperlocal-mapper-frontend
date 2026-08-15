@@ -14,17 +14,17 @@ const APPROACH = [
   {
     title: "Report",
     desc: "Citizens complaint submit karte hain location + image ke sath — koi login-heavy process nahi, seedha simple form.",
-    color: "#2F6FED",
+    color: "#364fc7",
   },
   {
     title: "Cluster",
     desc: "DBSCAN clustering se similar location aur category ke reports automatically group ho jate hain — duplicate noise khatam.",
-    color: "#14B8A6",
+    color: "#0d9488",
   },
   {
     title: "Resolve",
     desc: "Admins ko priority-ranked dashboard milta hai — jahan zyada log affected hain wahan pehle action.",
-    color: "#FF6B4A",
+    color: "#e2543f",
   },
 ];
 
@@ -49,23 +49,21 @@ const VALUES = [
 
 export default function About() {
   return (
-    <div className="bg-[#F5F8FC] text-[#0F1729] font-['Inter']">
+    <div className="bg-bg text-text-dark font-['Inter']">
       {/* 1. HERO */}
       <section className="relative overflow-hidden px-6 pt-28 pb-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-[#5B6B85] mb-6"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-text-muted mb-6"
         >
           <span className="relative inline-flex w-2.5 h-2.5">
             <span
-              className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping"
-              style={{ backgroundColor: "#2F6FED" }}
+              className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-primary"
             />
             <span
-              className="relative inline-flex rounded-full h-full w-full"
-              style={{ backgroundColor: "#2F6FED" }}
+              className="relative inline-flex rounded-full h-full w-full bg-primary"
             />
           </span>
           Humare baare mein
@@ -77,14 +75,14 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-['Sora'] font-bold text-4xl md:text-6xl leading-tight max-w-3xl mx-auto"
         >
-          Har Shikayat, <span style={{ color: "#2F6FED" }}>Ek Signal</span> Hai
+          Har Shikayat, <span className="text-primary">Ek Signal</span> Hai
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-5 text-lg text-[#5B6B85] max-w-2xl mx-auto"
+          className="mt-5 text-lg text-text-muted max-w-2xl mx-auto"
         >
           Hyperlocal Problem Mapper ek civic-tech platform hai jo Pakistan ke
           shehron mein bijli, paani, sadak aur safai ke masail ko AI ki madad se
@@ -99,7 +97,7 @@ export default function About() {
           <h2 className="font-['Sora'] font-semibold text-2xl mb-4">
             Ye Kyun Banaya?
           </h2>
-          <p className="text-[#5B6B85] leading-relaxed">
+          <p className="text-text-muted leading-relaxed">
             Pakistan ke shehron mein civic complaints aksar scattered social
             media posts, WhatsApp groups, ya verbal complaints tak mehdood reh
             jati hain — koi central record nahi, koi pattern visible nahi.
@@ -140,7 +138,7 @@ export default function About() {
                 <h3 className="font-['Sora'] font-semibold text-lg mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#5B6B85] leading-relaxed">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {step.desc}
                 </p>
               </motion.div>
@@ -161,12 +159,11 @@ export default function About() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
             >
               <p
-                className="font-mono font-bold text-3xl"
-                style={{ color: "#2F6FED" }}
+                className="font-mono font-bold text-3xl bg-primary"
               >
                 {stat.value}
               </p>
-              <p className="text-sm text-[#5B6B85] mt-1">{stat.label}</p>
+              <p className="text-sm text-text-muted mt-1">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -189,7 +186,7 @@ export default function About() {
                 className="glass rounded-2xl p-5"
               >
                 <p className="font-['Sora'] font-semibold">{city.name}</p>
-                <p className="text-xs text-[#5B6B85] mt-2 leading-relaxed">
+                <p className="text-xs text-text-muted mt-2 leading-relaxed">
                   {city.note}
                 </p>
               </motion.div>
@@ -208,7 +205,7 @@ export default function About() {
             {VALUES.map(([title, desc]) => (
               <div key={title} className="glass rounded-2xl p-6">
                 <p className="font-medium mb-1">{title}</p>
-                <p className="text-sm text-[#5B6B85]">{desc}</p>
+                <p className="text-sm text-text-muted">{desc}</p>
               </div>
             ))}
           </div>
@@ -217,13 +214,12 @@ export default function About() {
             <h3 className="font-['Sora'] font-semibold text-xl mb-2">
               Aap Bhi Hissa Banein
             </h3>
-            <p className="text-[#5B6B85] mb-6">
+            <p className="text-text-muted mb-6">
               Apne shehar ka masla report karein — chota sa kaam, bara farq.
             </p>
             <Link
               to="/report-issue"
-              className="inline-block px-6 py-3 rounded-xl text-white font-medium"
-              style={{ backgroundColor: "#2F6FED" }}
+              className="inline-block px-6 py-3 rounded-xl text-white font-medium bg-primary"
             >
               Report an Issue
             </Link>

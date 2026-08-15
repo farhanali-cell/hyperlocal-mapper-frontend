@@ -82,7 +82,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3 shadow-lg shadow-slate-200/50">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+          <Link to="/" className="flex items-center gap-2 shrink-0">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
@@ -108,7 +108,7 @@ function Navbar() {
               </Link>
             ))}
 
-            <div className="relative flex-shrink-0" ref={moreRef}>
+            <div className="relative shrink-0" ref={moreRef}>
               <button
                 onClick={() => setMoreOpen(!moreOpen)}
                 className={`flex items-center gap-1 text-sm font-medium whitespace-nowrap transition-colors ${
@@ -163,10 +163,10 @@ function Navbar() {
           </div>
 
           {/* Desktop right side: auth / bell / profile dropdown */}
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0">
             {user ? (
               <>
-                <div className="relative flex-shrink-0" ref={bellRef}>
+                <div className="relative shrink-0" ref={bellRef}>
                   <button
                     onClick={() => setBellOpen(!bellOpen)}
                     className="relative p-2 rounded-full hover:bg-white/60 transition-colors"
@@ -236,15 +236,15 @@ function Navbar() {
                 </div>
 
                 {/* Profile avatar + dropdown */}
-                <div className="relative flex-shrink-0" ref={profileRef}>
+                <div className="relative shrink-0" ref={profileRef}>
                   <button
                     onClick={() => setProfileOpen(!profileOpen)}
                     className="flex items-center gap-2 min-w-0"
                   >
-                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
                       {getInitials(user.username)}
                     </span>
-                    <span className="hidden xl:inline text-sm font-medium text-text-muted hover:text-text-dark truncate max-w-[9rem]">
+                    <span className="hidden xl:inline text-sm font-medium text-text-muted hover:text-text-dark truncate max-w-36">
                       {user.username}
                     </span>
                     <svg
@@ -306,13 +306,13 @@ function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="flex-shrink-0 text-sm font-medium text-text-muted hover:text-text-dark whitespace-nowrap"
+                  className="shrink-0 text-sm font-medium text-text-muted hover:text-text-dark whitespace-nowrap"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/report-issue"
-                  className="flex-shrink-0 text-sm font-semibold px-3 xl:px-4 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
+                  className="shrink-0 text-sm font-semibold px-3 xl:px-4 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
                 >
                   Report an Issue
                 </Link>
@@ -322,7 +322,7 @@ function Navbar() {
 
           {/* Mobile / tablet: hamburger */}
           <button
-            className="lg:hidden flex flex-col gap-1.5 p-2 flex-shrink-0"
+            className="lg:hidden flex flex-col gap-1.5 p-2 shrink-0"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >

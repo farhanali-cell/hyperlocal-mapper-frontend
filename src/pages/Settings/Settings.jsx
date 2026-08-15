@@ -103,7 +103,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F8FC]">
+    <div className="min-h-screen bg-bg">
       {/* 1. Header */}
       <section className="pt-28 pb-10 px-6 md:px-12 max-w-3xl mx-auto text-center">
         <motion.div
@@ -111,14 +111,14 @@ export default function Settings() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-mono text-[#5B6B85] mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#2F6FED] animate-pulse" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-mono text-text-muted mb-4">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Settings
           </span>
-          <h1 className="font-[Sora] text-3xl md:text-5xl font-semibold text-[#0F1729] mb-2">
+          <h1 className="font-[Sora] text-3xl md:text-5xl font-semibold text-text-dark mb-2">
             Account settings
           </h1>
-          <p className="text-[#5B6B85]">
+          <p className="text-text-muted">
             Manage your profile, password, and notification preferences.
           </p>
         </motion.div>
@@ -130,47 +130,47 @@ export default function Settings() {
           onSubmit={handleProfileSubmit}
           className="glass rounded-2xl p-6 md:p-8"
         >
-          <h2 className="font-[Sora] text-lg font-semibold text-[#0F1729] mb-4">
+          <h2 className="font-[Sora] text-lg font-semibold text-text-dark mb-4">
             Profile information
           </h2>
           <div className="grid sm:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm text-[#5B6B85] mb-1">
+              <label className="block text-sm text-text-muted mb-1">
                 Username
               </label>
               <input
                 name="username"
                 value={profileForm.username}
                 onChange={handleProfileChange}
-                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label className="block text-sm text-[#5B6B85] mb-1">Email</label>
+              <label className="block text-sm text-text-muted mb-1">Email</label>
               <input
                 type="email"
                 name="email"
                 value={profileForm.email}
                 onChange={handleProfileChange}
-                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label className="block text-sm text-[#5B6B85] mb-1">Phone</label>
+              <label className="block text-sm text-text-muted mb-1">Phone</label>
               <input
                 type="tel"
                 name="phone"
                 value={profileForm.phone}
                 onChange={handleProfileChange}
                 placeholder="03XXXXXXXXX"
-                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
           <button
             type="submit"
             disabled={profileStatus.state === "loading"}
-            className="px-6 py-2.5 rounded-full bg-[#2F6FED] text-white font-medium hover:bg-[#2558c4] transition-colors disabled:opacity-60"
+            className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary transition-colors disabled:opacity-60"
           >
             {profileStatus.state === "loading" ? "Saving…" : "Save Changes"}
           </button>
@@ -178,8 +178,8 @@ export default function Settings() {
             <p
               className={`text-sm mt-3 ${
                 profileStatus.state === "success"
-                  ? "text-[#14B8A6]"
-                  : "text-[#FF6B4A]"
+                  ? "text-secondary"
+                  : "text-alert"
               }`}
             >
               {profileStatus.message}
@@ -194,12 +194,12 @@ export default function Settings() {
           onSubmit={handlePasswordSubmit}
           className="glass rounded-2xl p-6 md:p-8"
         >
-          <h2 className="font-[Sora] text-lg font-semibold text-[#0F1729] mb-4">
+          <h2 className="font-[Sora] text-lg font-semibold text-text-dark mb-4">
             Change password
           </h2>
           <div className="space-y-4 mb-4">
             <div>
-              <label className="block text-sm text-[#5B6B85] mb-1">
+              <label className="block text-sm text-text-muted mb-1">
                 Current password
               </label>
               <div className="relative">
@@ -209,12 +209,12 @@ export default function Settings() {
                   value={passwordForm.current_password}
                   onChange={handlePasswordChange}
                   required
-                  className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                  className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-text-dark outline-none focus:ring-2 focus:ring-primary"
                 />
                 <button
                   type="button"
                   onClick={() => togglePasswordVisibility("current")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5B6B85] hover:text-[#0F1729]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-dark"
                   tabIndex={-1}
                 >
                   {showPasswords.current ? (
@@ -256,7 +256,7 @@ export default function Settings() {
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-[#5B6B85] mb-1">
+                <label className="block text-sm text-text-muted mb-1">
                   New password
                 </label>
                 <div className="relative">
@@ -266,12 +266,12 @@ export default function Settings() {
                     value={passwordForm.new_password}
                     onChange={handlePasswordChange}
                     required
-                    className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                    className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-text-dark outline-none focus:ring-2 focus:ring-primary"
                   />
                   <button
                     type="button"
                     onClick={() => togglePasswordVisibility("new")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5B6B85] hover:text-[#0F1729]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-dark"
                     tabIndex={-1}
                   >
                     {showPasswords.new ? (
@@ -312,7 +312,7 @@ export default function Settings() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm text-[#5B6B85] mb-1">
+                <label className="block text-sm text-text-muted mb-1">
                   Confirm new password
                 </label>
                 <div className="relative">
@@ -322,12 +322,12 @@ export default function Settings() {
                     value={passwordForm.confirm_password}
                     onChange={handlePasswordChange}
                     required
-                    className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#2F6FED]"
+                    className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 pr-11 text-text-dark outline-none focus:ring-2 focus:ring-primary"
                   />
                   <button
                     type="button"
                     onClick={() => togglePasswordVisibility("confirm")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5B6B85] hover:text-[#0F1729]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-dark"
                     tabIndex={-1}
                   >
                     {showPasswords.confirm ? (
@@ -372,7 +372,7 @@ export default function Settings() {
           <button
             type="submit"
             disabled={passwordStatus.state === "loading"}
-            className="px-6 py-2.5 rounded-full bg-[#2F6FED] text-white font-medium hover:bg-[#2558c4] transition-colors disabled:opacity-60"
+            className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary transition-colors disabled:opacity-60"
           >
             {passwordStatus.state === "loading"
               ? "Updating…"
@@ -382,8 +382,8 @@ export default function Settings() {
             <p
               className={`text-sm mt-3 ${
                 passwordStatus.state === "success"
-                  ? "text-[#14B8A6]"
-                  : "text-[#FF6B4A]"
+                  ? "text-secondary"
+                  : "text-alert"
               }`}
             >
               {passwordStatus.message}
@@ -395,34 +395,34 @@ export default function Settings() {
       {/* 4. Notification preferences */}
       <section className="px-6 md:px-12 max-w-3xl mx-auto mb-10">
         <div className="glass rounded-2xl p-6 md:p-8">
-          <h2 className="font-[Sora] text-lg font-semibold text-[#0F1729] mb-4">
+          <h2 className="font-[Sora] text-lg font-semibold text-text-dark mb-4">
             Notifications
           </h2>
           <div className="space-y-4">
             <label className="flex items-center justify-between cursor-pointer">
-              <span className="text-sm text-[#0F1729]">
+              <span className="text-sm text-text-dark">
                 Email me when my complaint status changes
               </span>
               <input
                 type="checkbox"
                 checked={notifyStatusUpdates}
                 onChange={() => setNotifyStatusUpdates((v) => !v)}
-                className="w-5 h-5 accent-[#2F6FED]"
+                className="w-5 h-5 accent-primary"
               />
             </label>
             <label className="flex items-center justify-between cursor-pointer">
-              <span className="text-sm text-[#0F1729]">
+              <span className="text-sm text-text-dark">
                 Send me occasional community updates
               </span>
               <input
                 type="checkbox"
                 checked={notifyEmail}
                 onChange={() => setNotifyEmail((v) => !v)}
-                className="w-5 h-5 accent-[#2F6FED]"
+                className="w-5 h-5 accent-primary"
               />
             </label>
           </div>
-          <p className="text-xs text-[#5B6B85] mt-4">
+          <p className="text-xs text-text-muted mt-4">
             Note: these preferences are stored locally for now — backend saving
             isn't wired up yet.
           </p>
@@ -433,15 +433,15 @@ export default function Settings() {
       <section className="px-6 md:px-12 max-w-3xl mx-auto mb-10">
         <div className="glass rounded-2xl p-6 md:p-8 flex items-center justify-between">
           <div>
-            <h2 className="font-[Sora] text-lg font-semibold text-[#0F1729] mb-1">
+            <h2 className="font-[Sora] text-lg font-semibold text-text-dark mb-1">
               Account type
             </h2>
-            <p className="text-sm text-[#5B6B85]">
+            <p className="text-sm text-text-muted">
               You're signed in as a{" "}
               {user?.role === "admin" ? "administrator" : "citizen"}.
             </p>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#2F6FED]/10 text-[#2F6FED]">
+          <span className="px-3 py-1 rounded-full text-xs font-medium bg-text-dark/10 text-primary">
             {user?.role || "citizen"}
           </span>
         </div>
@@ -451,16 +451,16 @@ export default function Settings() {
       <section className="px-6 md:px-12 max-w-3xl mx-auto mb-10">
         <div className="glass rounded-2xl p-6 md:p-8 flex items-center justify-between gap-4">
           <div>
-            <h2 className="font-[Sora] text-lg font-semibold text-[#0F1729] mb-1">
+            <h2 className="font-[Sora] text-lg font-semibold text-text-dark mb-1">
               Log out
             </h2>
-            <p className="text-sm text-[#5B6B85]">
+            <p className="text-sm text-text-muted">
               End your session on this device.
             </p>
           </div>
           <button
             onClick={logout}
-            className="px-5 py-2.5 rounded-full glass text-[#0F1729] font-medium hover:bg-white/70 transition-colors shrink-0"
+            className="px-5 py-2.5 rounded-full glass text-text-dark font-medium hover:bg-white/70 transition-colors shrink-0"
           >
             Log Out
           </button>
@@ -469,11 +469,11 @@ export default function Settings() {
 
       {/* 7. Danger zone */}
       <section className="px-6 md:px-12 max-w-3xl mx-auto mb-10">
-        <div className="rounded-2xl border border-[#FF6B4A]/30 bg-[#FF6B4A]/5 p-6 md:p-8">
-          <h2 className="font-[Sora] text-lg font-semibold text-[#FF6B4A] mb-1">
+        <div className="rounded-2xl border border-accent/30 bg-text-dark/5 p-6 md:p-8">
+          <h2 className="font-[Sora] text-lg font-semibold text-alert mb-1">
             Danger zone
           </h2>
-          <p className="text-sm text-[#5B6B85] mb-4">
+          <p className="text-sm text-text-muted mb-4">
             Deleting your account removes your profile and complaint history
             permanently. This can't be undone.
           </p>
@@ -481,11 +481,11 @@ export default function Settings() {
             value={deleteConfirmText}
             onChange={(e) => setDeleteConfirmText(e.target.value)}
             placeholder='Type "DELETE" to confirm'
-            className="w-full max-w-xs rounded-xl border border-[#FF6B4A]/40 bg-white/70 px-4 py-2.5 text-[#0F1729] outline-none focus:ring-2 focus:ring-[#FF6B4A] mb-3"
+            className="w-full max-w-xs rounded-xl border border-accent/40 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-alert mb-3"
           />
           <button
             disabled={deleteConfirmText !== "DELETE"}
-            className="px-6 py-2.5 rounded-full bg-[#FF6B4A] text-white font-medium hover:bg-[#e85c3d] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-6 py-2.5 rounded-full bg-alert text-white font-medium hover:bg-alert transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Delete My Account
           </button>
@@ -494,9 +494,9 @@ export default function Settings() {
 
       {/* 8. Help footer note */}
       <section className="px-6 md:px-12 max-w-3xl mx-auto pb-24 text-center">
-        <p className="text-sm text-[#5B6B85]">
+        <p className="text-sm text-text-muted">
           Need help with your account?{" "}
-          <a href="/contact" className="text-[#2F6FED] font-medium">
+          <a href="/contact" className="text-primary font-medium">
             Contact us
           </a>
         </p>

@@ -8,19 +8,19 @@ const SOLUTION_STEPS = [
     step: "01",
     title: "Report",
     desc: "Location + photo ke sath, 2 minute mein complaint submit karein.",
-    color: "#2F6FED",
+    color: "#364fc7",
   },
   {
     step: "02",
     title: "Cluster",
     desc: "AI (DBSCAN) similar reports ko automatically group karta hai.",
-    color: "#14B8A6",
+    color: "#0d9488",
   },
   {
     step: "03",
     title: "Resolve",
     desc: "Priority-ranked dashboard se admins fastest action le sakte hain.",
-    color: "#FF6B4A",
+    color: "#e2543f",
   },
 ];
 
@@ -51,23 +51,21 @@ const FEATURES = [
 
 export default function Landing() {
   return (
-    <div className="bg-[#F5F8FC] text-[#0F1729] font-['Inter'] overflow-hidden">
+    <div className="bg-bg text-text-dark font-['Inter'] overflow-hidden">
       {/* 1. HERO */}
       <section className="relative px-6 pt-28 pb-24 md:pt-36 md:pb-32 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-[#5B6B85] mb-6"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-text-muted mb-6"
         >
           <span className="relative inline-flex w-2.5 h-2.5">
             <span
-              className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping"
-              style={{ backgroundColor: "#2F6FED" }}
+              className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-primary"
             />
             <span
-              className="relative inline-flex rounded-full h-full w-full"
-              style={{ backgroundColor: "#2F6FED" }}
+              className="relative inline-flex rounded-full h-full w-full bg-primary"
             />
           </span>
           Ab live hai — 4 cities
@@ -80,14 +78,14 @@ export default function Landing() {
           className="font-['Sora'] font-bold text-4xl md:text-6xl lg:text-7xl leading-[1.1] max-w-4xl mx-auto"
         >
           Shehar Ke Masail,{" "}
-          <span style={{ color: "#2F6FED" }}>AI Ki Nazar Se</span>
+          <span className="text-primary">AI Ki Nazar Se</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-lg text-[#5B6B85] max-w-xl mx-auto"
+          className="mt-6 text-lg text-text-muted max-w-xl mx-auto"
         >
           Bijli, paani, sadak, safai — har complaint ko location aur AI
           clustering se actionable data mein badal dete hain, taake sabse zyada
@@ -102,8 +100,7 @@ export default function Landing() {
         >
           <Link
             to="/report-issue"
-            className="px-7 py-3.5 rounded-xl text-white font-medium"
-            style={{ backgroundColor: "#2F6FED" }}
+            className="px-7 py-3.5 rounded-xl text-white font-medium bg-primary"
           >
             Report an Issue
           </Link>
@@ -122,7 +119,7 @@ export default function Landing() {
           <h2 className="font-['Sora'] font-semibold text-2xl md:text-3xl mb-5">
             Complaints Kahin Aur Kahin Bikhri Hoti Hain
           </h2>
-          <p className="text-[#5B6B85] leading-relaxed">
+          <p className="text-text-muted leading-relaxed">
             WhatsApp groups, random social media posts, phone calls — civic
             issues report to hote hain, lekin ek jagah collect nahi hote. Koi
             pattern visible nahi hota, koi priority nahi banti. Nateeja: sabse
@@ -156,11 +153,11 @@ export default function Landing() {
                 <h3 className="font-['Sora'] font-semibold text-lg mt-3 mb-2">
                   {s.title}
                 </h3>
-                <p className="text-sm text-[#5B6B85] leading-relaxed">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {s.desc}
                 </p>
                 {i < SOLUTION_STEPS.length - 1 && (
-                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-[#5B6B85]/20" />
+                  <span className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-text-dark/20" />
                 )}
               </motion.div>
             ))}
@@ -171,7 +168,7 @@ export default function Landing() {
       {/* 4. CITIES BAND */}
       <section className="px-6 pb-24">
         <div className="max-w-4xl mx-auto glass rounded-3xl py-10 px-6 text-center">
-          <p className="text-sm text-[#5B6B85] mb-6 uppercase tracking-wide font-medium">
+          <p className="text-sm text-text-muted mb-6 uppercase tracking-wide font-medium">
             Currently active in
           </p>
           <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
@@ -182,7 +179,7 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="font-['Sora'] font-semibold text-xl md:text-2xl text-[#5B6B85]"
+                className="font-['Sora'] font-semibold text-xl md:text-2xl text-text-muted"
               >
                 {city}
               </motion.span>
@@ -210,7 +207,7 @@ export default function Landing() {
                 <span className="text-2xl shrink-0">{f.icon}</span>
                 <div>
                   <p className="font-['Sora'] font-semibold mb-1">{f.title}</p>
-                  <p className="text-sm text-[#5B6B85] leading-relaxed">
+                  <p className="text-sm text-text-muted leading-relaxed">
                     {f.desc}
                   </p>
                 </div>
@@ -227,8 +224,7 @@ export default function Landing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto rounded-3xl px-8 py-14 text-center relative overflow-hidden"
-          style={{ backgroundColor: "#0F1729" }}
+          className="max-w-4xl mx-auto rounded-3xl px-8 py-14 text-center relative overflow-hidden bg-text-dark"
         >
           <h2 className="font-['Sora'] font-bold text-2xl md:text-4xl text-white mb-4">
             Aapki Awaaz, Shehar Ki Behtari
@@ -239,8 +235,7 @@ export default function Landing() {
           </p>
           <Link
             to="/report-issue"
-            className="inline-block px-8 py-3.5 rounded-xl font-medium"
-            style={{ backgroundColor: "#2F6FED", color: "white" }}
+            className="inline-block px-8 py-3.5 rounded-xl font-medium bg-primary text-white"
           >
             Get Started
           </Link>
