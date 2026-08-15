@@ -209,7 +209,7 @@ export default function LiveMap() {
                 <button
                   onClick={() => setCategoryFilter("all")}
                   className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${
-                    categoryFilter === "all" ? "bg-text-dark font-medium" : ""
+                    categoryFilter === "all" ? "bg-primary/10 text-primary font-medium" : ""
                   }`}
                 >
                   All
@@ -219,7 +219,7 @@ export default function LiveMap() {
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
                     className={`w-full text-left px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 capitalize ${
-                      categoryFilter === cat ? "bg-text-dark font-medium" : ""
+                      categoryFilter === cat ? "bg-primary/10 text-primary font-medium" : ""
                     }`}
                   >
                     <span
@@ -239,7 +239,7 @@ export default function LiveMap() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-white/70 border border-text-dark/15 text-sm outline-none"
+                className="w-full px-3 py-2 rounded-lg input-field text-sm outline-none"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s.id} value={s.id}>

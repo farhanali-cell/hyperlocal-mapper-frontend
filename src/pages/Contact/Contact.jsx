@@ -86,7 +86,7 @@ export default function Contact() {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-xl input-field px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
@@ -97,7 +97,7 @@ export default function Contact() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-xl input-field px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Contact() {
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-xl input-field px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary"
             >
               {CATEGORIES.map((c) => (
                 <option key={c.value} value={c.value}>
@@ -128,14 +128,14 @@ export default function Contact() {
               onChange={handleChange}
               required
               rows={5}
-              className="w-full rounded-xl border border-white/60 bg-white/70 px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary resize-none"
+              className="w-full rounded-xl input-field px-4 py-2.5 text-text-dark outline-none focus:ring-2 focus:ring-primary resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={status.state === "loading"}
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary transition-colors disabled:opacity-60"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary-dark transition-colors disabled:opacity-60"
           >
             {status.state === "loading" ? "Sending…" : "Send Message"}
           </button>
