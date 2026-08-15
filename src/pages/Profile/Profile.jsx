@@ -86,11 +86,10 @@ export default function Profile() {
     formData.append("profile_picture", file);
 
     try {
-      const res = await axios.patch("/auth/profile/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setAvatarUrl(res.data.profile_picture);
-      updateUser({ profile_picture: res.data.profile_picture });
+      const res = await axios.patch("/auth/profile/", formData);
+      const bustedUrl = `${res.data.profile_picture}?t=${Date.now()}`;
+      setAvatarUrl(bustedUrl);
+      updateUser({ profile_picture: bustedUrl });
     } catch (err) {
       console.error("Profile: failed to upload profile picture", err);
       setUploadError("Upload failed. Please try again.");
