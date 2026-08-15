@@ -5,18 +5,18 @@ import { useAuth } from "../../context/AuthContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
   { name: "Live Map", path: "/live-map" },
-  { name: "Community", path: "/community-insights" },
+  { name: "Contact", path: "/contact" },
 ];
 
 const exploreLinks = [
-  { name: "Landing", path: "/landing" },
-  { name: "About", path: "/about" },
+  { name: "Community", path: "/community-insights" },
   { name: "How It Works", path: "/how-it-works" },
-  { name: "Contact", path: "/contact" },
   { name: "Track Complaint", path: "/track-complaint" },
   { name: "Help / FAQ", path: "/help" },
   { name: "Settings", path: "/settings" },
+  { name: "Landing", path: "/landing" },
 ];
 
 function getInitials(username) {
@@ -312,10 +312,10 @@ function Navbar() {
                   Log in
                 </Link>
                 <Link
-                  to="/report-issue"
+                  to="/register"
                   className="shrink-0 text-sm font-semibold px-3 xl:px-4 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
                 >
-                  Report an Issue
+                  Register
                 </Link>
               </>
             )}
@@ -448,11 +448,11 @@ function Navbar() {
                     Log in
                   </Link>
                   <Link
-                    to="/report-issue"
+                    to="/register"
                     onClick={() => setMenuOpen(false)}
                     className="text-sm font-semibold text-primary"
                   >
-                    Report an Issue
+                    Register
                   </Link>
                 </>
               )}
