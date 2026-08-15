@@ -169,6 +169,18 @@ export default function ReportIssue() {
   const handleImagePick = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const MAX_SIZE_MB = 5;
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      setErrors((er) => ({
+        ...er,
+        image: `Image ${MAX_SIZE_MB}MB se choti honi chahiye (aapki: ${(file.size / (1024 * 1024)).toFixed(1)}MB)`,
+      }));
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setErrors((er) => ({ ...er, image: undefined }));
     setImageFile(file);
     const reader = new FileReader();
     reader.onload = () => setImagePreview(reader.result);
@@ -194,15 +206,25 @@ export default function ReportIssue() {
           );
           const data = await res.json();
           if (data?.display_name) {
-            const cityName =
-              data.address?.city ||
-              data.address?.town ||
-              data.address?.county ||
+            const addr = data.address || {};
+            const rawCity =
+              addr.city ||
+              addr.town ||
+              addr.county ||
+              addr.state_district ||
+              addr.district ||
               "";
+
+            // App sirf 4 fixed cities support karta hai — jo bhi match ho wahi select karo
+            const knownCities = Object.keys(CITY_CENTERS);
+            const matchedCity = knownCities.find((c) =>
+              rawCity.toLowerCase().includes(c.toLowerCase()),
+            );
+
             setForm((f) => ({
               ...f,
               address: data.display_name,
-              city: cityName,
+              city: matchedCity || f.city,
             }));
           }
         } catch (_) {
@@ -620,6 +642,14 @@ export default function ReportIssue() {
                     onChange={handleImagePick}
                     className="hidden"
                   />
+                  <p className="text-xs mt-1 text-text-muted">
+                    Max size: 5MB (JPG, PNG)
+                  </p>
+                  {errors.image && (
+                    <p className="text-xs mt-1" style={{ color: "#FF6B4A" }}>
+                      {errors.image}
+                    </p>
+                  )}
                 </div>
 
                 {errors.submit && (
