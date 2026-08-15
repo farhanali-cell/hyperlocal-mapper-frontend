@@ -115,8 +115,23 @@ export default function LiveMap() {
     api
       .get("/clusters/")
       .then((res) => {
-        if (mounted && Array.isArray(res.data) && res.data.length) {
-          setClusters(res.data);
+        const raw = Array.isArray(res.data)
+          ? res.data
+          : res.data?.results || [];
+
+        const adapted = raw.map((c) => ({
+          id: c.id,
+          lat: c.center_latitude,
+          lng: c.center_longitude,
+          category: c.category,
+          severity: c.priority_level, // "high" | "medium" | "low"
+          count: c.complaint_count,
+          status: "open", // backend doesn't track cluster status yet
+          title: `${c.category.charAt(0).toUpperCase() + c.category.slice(1)} issue — ${c.area}`,
+        }));
+
+        if (mounted && adapted.length) {
+          setClusters(adapted);
         }
       })
       .catch(() => {
