@@ -199,32 +199,41 @@ export default function ReportIssue() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords;
-        setForm((f) => ({ ...f, latitude, longitude }));
         try {
           const res = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
           );
           const data = await res.json();
-          if (data?.display_name) {
-            const addr = data.address || {};
-            const rawCity =
-              addr.city ||
-              addr.town ||
-              addr.county ||
-              addr.state_district ||
-              addr.district ||
-              "";
+          const addr = data?.address || {};
+          const rawCity =
+            addr.city ||
+            addr.town ||
+            addr.county ||
+            addr.state_district ||
+            addr.district ||
+            "";
 
-            // App sirf 4 fixed cities support karta hai — jo bhi match ho wahi select karo
-            const knownCities = Object.keys(CITY_CENTERS);
-            const matchedCity = knownCities.find((c) =>
-              rawCity.toLowerCase().includes(c.toLowerCase()),
-            );
+          const knownCities = Object.keys(CITY_CENTERS);
+          const matchedCity = knownCities.find((c) =>
+            rawCity.toLowerCase().includes(c.toLowerCase()),
+          );
 
+          if (matchedCity) {
+            // GPS location is inside one of our 4 supported cities — use it directly
             setForm((f) => ({
               ...f,
-              address: data.display_name,
-              city: matchedCity || f.city,
+              latitude,
+              longitude,
+              address: data.display_name || f.address,
+              city: matchedCity,
+            }));
+          } else {
+            // Outside our 4 supported cities — don't set lat/lng from GPS.
+            // User picks a city manually; submit-time fallback uses that city's center.
+            setForm((f) => ({
+              ...f,
+              address:
+                "Aapki current location humare 4 supported cities se bahar hai — neeche city select karein.",
             }));
           }
         } catch (_) {
