@@ -11,12 +11,12 @@ const navLinks = [
 ];
 
 const exploreLinks = [
-  { name: "Landing", path: "/landing" },
   { name: "Community", path: "/community-insights" },
   { name: "How It Works", path: "/how-it-works" },
   { name: "Track Complaint", path: "/track-complaint" },
   { name: "Help / FAQ", path: "/help" },
-  { name: "Settings", path: "/settings" }
+  { name: "Settings", path: "/settings" },
+  { name: "Landing", path: "/landing" },
 ];
 
 function getInitials(username) {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import axios from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
@@ -15,9 +15,19 @@ function initialsOf(name) {
 }
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Profile picture upload state
+  const [avatarUrl, setAvatarUrl] = useState(user?.profile_picture || null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    setAvatarUrl(user?.profile_picture || null);
+  }, [user]);
 
   useEffect(() => {
     if (!user) return;
@@ -47,6 +57,51 @@ export default function Profile() {
     };
   }, [complaints]);
 
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Basic client-side validation
+    if (!file.type.startsWith("image/")) {
+      setUploadError("Please select an image file.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setUploadError("Image must be under 5MB.");
+      return;
+    }
+
+    setUploadError("");
+    setUploading(true);
+
+    // Show an instant local preview while the upload is in progress
+    const localPreview = URL.createObjectURL(file);
+    setAvatarUrl(localPreview);
+
+    const formData = new FormData();
+    formData.append("profile_picture", file);
+
+    try {
+      const res = await axios.patch("/profile/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setAvatarUrl(res.data.profile_picture);
+      updateUser({ profile_picture: res.data.profile_picture });
+    } catch (err) {
+      console.error("Profile: failed to upload profile picture", err);
+      setUploadError("Upload failed. Please try again.");
+      setAvatarUrl(user?.profile_picture || null);
+    } finally {
+      setUploading(false);
+      URL.revokeObjectURL(localPreview);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
   if (!user) {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center px-6">
@@ -64,8 +119,64 @@ export default function Profile() {
           animate={{ opacity: 1, y: 0 }}
           className="glass rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-5"
         >
-          <div className="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center font-[Sora] text-2xl font-semibold shrink-0">
-            {initialsOf(user.username)}
+          <div className="relative shrink-0">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={handleAvatarClick}
+              disabled={uploading}
+              className="relative w-20 h-20 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary"
+              aria-label="Change profile picture"
+            >
+              {avatarUrl ? (
+                <img
+                  src={avatarUrl}
+                  alt={user.username}
+                  className="w-20 h-20 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center font-[Sora] text-2xl font-semibold">
+                  {initialsOf(user.username)}
+                </div>
+              )}
+              {uploading && (
+                <div className="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center">
+                  <span className="text-white text-xs">…</span>
+                </div>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={handleAvatarClick}
+              disabled={uploading}
+              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center shadow-md hover:bg-primary-dark transition-colors"
+              aria-label="Change profile picture"
+            >
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.232 5.232l3.536 3.536M9 11l6.586-6.586a2 2 0 112.828 2.828L11.828 13.828H9V11z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 19h14"
+                />
+              </svg>
+            </button>
           </div>
           <div className="text-center sm:text-left">
             <h1 className="font-[Sora] text-2xl font-semibold text-text-dark">
@@ -75,6 +186,9 @@ export default function Profile() {
             <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-text-dark/10 text-primary capitalize">
               {user.role || "citizen"}
             </span>
+            {uploadError && (
+              <p className="text-alert text-xs mt-2">{uploadError}</p>
+            )}
           </div>
           <a
             href="/settings"
@@ -183,7 +297,10 @@ export default function Profile() {
       <section className="px-6 md:px-12 max-w-5xl mx-auto pb-24 text-center">
         <p className="text-sm text-text-muted">
           Something look wrong?{" "}
-          <a href="/contact" className="text-primary hover:text-secondary font-medium">
+          <a
+            href="/contact"
+            className="text-primary hover:text-secondary font-medium"
+          >
             Contact us
           </a>
         </p>

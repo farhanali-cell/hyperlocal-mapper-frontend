@@ -54,8 +54,22 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  // Merges partial or full user data (e.g. after a profile update) into
+  // both the in-memory user state and localStorage, so every component
+  // reading from useAuth() — like the Navbar avatar — updates immediately
+  // without needing a full re-login or page refresh.
+  const updateUser = (updatedFields) => {
+    setUser((prev) => {
+      const next = { ...prev, ...updatedFields };
+      localStorage.setItem("user", JSON.stringify(next));
+      return next;
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider
+      value={{ user, login, register, logout, loading, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
