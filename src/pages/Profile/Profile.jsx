@@ -86,7 +86,7 @@ export default function Profile() {
     formData.append("profile_picture", file);
 
     try {
-      const res = await axios.patch("/profile/", formData, {
+      const res = await axios.patch("/auth/profile/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setAvatarUrl(res.data.profile_picture);
