@@ -242,9 +242,18 @@ function Navbar() {
                     onClick={() => setProfileOpen(!profileOpen)}
                     className="flex items-center gap-2 min-w-0"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
-                      {getInitials(user.username)}
-                    </span>
+                    {user.profile_picture ? (
+                      <img
+                        src={user.profile_picture}
+                        alt={user.username}
+                        className="h-8 w-8 shrink-0 rounded-full object-cover"
+                      />
+                    ) : (
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                        {getInitials(user.username)}
+                      </span>
+                    )}
+
                     <span className="hidden xl:inline text-sm font-medium text-text-muted hover:text-text-dark truncate max-w-36">
                       {user.username}
                     </span>
@@ -376,9 +385,19 @@ function Navbar() {
                       className="w-full flex items-center justify-between gap-2"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-white">
-                          {getInitials(user.username)}
-                        </span>
+
+                        {user.profile_picture ? (
+                          <img
+                            src={user.profile_picture}
+                            alt={user.username}
+                            className="h-7 w-7 rounded-full object-cover"
+                          />
+                        ) : (
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-white">
+                            {getInitials(user.username)}
+                          </span>
+                        )}
+                        
                         <span className="text-sm font-semibold text-text-dark">
                           {user.username}
                         </span>
