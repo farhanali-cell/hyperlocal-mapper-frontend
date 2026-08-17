@@ -582,7 +582,7 @@ export default function Home() {
                 ].map((bar, i) => (
                   <div
                     key={bar.label}
-                    className="flex w-14 shrink-0 flex-col items-center gap-2"
+                    className="flex w-20 shrink-0 flex-col items-center gap-2"
                   >
                     <motion.div
                       initial={{ height: 0 }}
