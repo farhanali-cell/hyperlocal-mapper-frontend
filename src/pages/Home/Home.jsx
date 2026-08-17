@@ -571,32 +571,34 @@ export default function Home() {
           </div>
 
           <div className="glass mt-12 rounded-3xl border border-white/40 p-8">
-            <div className="flex items-end justify-between gap-3 sm:gap-6">
-              {[
-                { label: "Potholes", value: 85 },
-                { label: "Streetlights", value: 62 },
-                { label: "Water", value: 48 },
-                { label: "Waste", value: 70 },
-                { label: "Drainage", value: 35 },
-              ].map((bar, i) => (
-                <div
-                  key={bar.label}
-                  className="flex flex-1 flex-col items-center gap-2"
-                >
-                  <motion.div
-                    initial={{ height: 0 }}
-                    whileInView={{ height: `${bar.value * 1.6}px` }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.7,
-                      delay: i * 0.1,
-                      ease: "easeOut",
-                    }}
-                    className="w-full rounded-t-lg bg-linear-to-t from-primary to-secondary"
-                  />
-                  <span className="text-xs text-text-muted">{bar.label}</span>
-                </div>
-              ))}
+            <div className="overflow-x-auto">
+              <div className="flex min-w-105 items-end justify-between gap-3 sm:min-w-0 sm:gap-6">
+                {[
+                  { label: "Potholes", value: 85 },
+                  { label: "Streetlights", value: 62 },
+                  { label: "Water", value: 48 },
+                  { label: "Waste", value: 70 },
+                  { label: "Drainage", value: 35 },
+                ].map((bar, i) => (
+                  <div
+                    key={bar.label}
+                    className="flex w-14 shrink-0 flex-col items-center gap-2"
+                  >
+                    <motion.div
+                      initial={{ height: 0 }}
+                      whileInView={{ height: `${bar.value * 1.6}px` }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.7,
+                        delay: i * 0.1,
+                        ease: "easeOut",
+                      }}
+                      className="w-full rounded-t-lg bg-linear-to-t from-primary to-secondary"
+                    />
+                    <span className="text-xs text-text-muted">{bar.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
