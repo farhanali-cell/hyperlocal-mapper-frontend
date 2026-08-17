@@ -581,7 +581,7 @@ export default function Home() {
               ].map((bar, i) => (
                 <div
                   key={bar.label}
-                  className="flex flex-1 flex-col items-center gap-2"
+                  cclassName="flex min-w-0 flex-1 flex-col items-center gap-2"
                 >
                   <motion.div
                     initial={{ height: 0 }}
@@ -594,7 +594,9 @@ export default function Home() {
                     }}
                     className="w-full rounded-t-lg bg-linear-to-t from-primary to-secondary"
                   />
-                  <span className="text-xs text-text-muted">{bar.label}</span>
+                  <span className="w-full truncate text-center text-[10px] text-text-muted sm:text-xs">
+                    {bar.label}
+                  </span>
                 </div>
               ))}
             </div>
